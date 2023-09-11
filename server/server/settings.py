@@ -26,11 +26,12 @@ SECRET_KEY = 'django-insecure-(-ulwiwszae$k817#%8+2_6u22&w4hix9u!o)epr5h5x_vcbsq
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-# CORS_ALLOWED_ORIGINS = [
-#     'http://localhost:3000',
-#     'http://127.0.0.1:3000',
-# ]
-# CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://127.0.0.1:3000',
+    'https://interprep.onrender.com',
+]
+CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
