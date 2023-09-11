@@ -9,6 +9,7 @@ from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
 from .models import CustomUser
 from .serializers import UserSerializer
+from django.contrib.auth.decorators import login_required
 
 
 #Route for registering a user
@@ -63,6 +64,7 @@ def homePage(request):
     return Response(serializer.data)
 
 # Route for creating Experience 
+@login_required
 @api_view(['POST'])
 def createExperience(request):
     data = request.data
