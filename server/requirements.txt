@@ -5,3 +5,4 @@ tzdata==2023.3
 postgres
 gunicorn
 djangorestframework
+django-cors-headers
