@@ -7,9 +7,8 @@ from .serializers import ExperienceSerializer
 from .models import Experience
 from rest_framework import status
 from django.core.exceptions import ObjectDoesNotExist
-from .models import CustomUser
+from django.contrib.auth.models import User
 from .serializers import UserSerializer
-from django.contrib.auth.decorators import login_required
 
 
 #Route for registering a user
@@ -29,19 +28,16 @@ def user_login(request):
         username = request.data.get('username')
         password = request.data.get('password')
 
-        user = None
-        if '@' in username:
+        if '@' in username: # If user is trying to login with email instead of username
             try:
-                user = CustomUser.objects.get(email=username)
+                username = User.objects.get(email=username).username
             except ObjectDoesNotExist:
                 pass
 
-        if not user:
-            user = authenticate(username=username, password=password)
+        user = authenticate(username=username, password=password)
 
         if user:
-            token, _ = Token.objects.get_or_create(user=user)
-            return Response({'token': token.key,'message' : 'Success'}, status=status.HTTP_200_OK)
+            return Response({'user':request.data, 'message' : 'Success'}, status=status.HTTP_200_OK)
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
 
 # Route for Logging out a user
@@ -64,7 +60,6 @@ def homePage(request):
     return Response(serializer.data)
 
 # Route for creating Experience 
-@login_required
 @api_view(['POST'])
 def createExperience(request):
     data = request.data
