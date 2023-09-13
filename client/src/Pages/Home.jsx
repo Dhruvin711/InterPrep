@@ -1,41 +1,32 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Layout from '../Layouts/Layout'
 import Card from '../Components/Card'
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import "../CSS/home.css";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Home = () => {
-    const cardData = [
-        {
-            company_name: "Oracle",
-            name: "John Doe",
-            time: "2 months",
-            year: "2023",
-            type: 1,
-            role: "SDE",
-            votes: 69,
-            tags: ["Experience", "DSA", "OOPs"]
-        },
-        {
-            company_name: "Orascvdacsvdcle",
-            name: "John Doe",
-            time: "2 months",
-            year: "2023",
-            type: 1,
-            role: "SDE",
-            votes: 69,
-            tags: ["Experience", "DSA", "OOPs"]
-        },
-        {
-            company_name: "Oracle",
-            name: "John Doe",
-            time: "2 months",
-            year: "2023",
-            type: 1,
-            role: "SDE",
-            votes: 69,
-            tags: ["Experience", "DSA", "OOPs"]
-        },
+    const navigate = useNavigate();
+    const tags = ["Experience", "DSA", "OOPs"];
 
-    ]
+    const [cardData,setCardData] = useState([]);
+
+    const getAllProducts = async () => {
+        try{
+            const {data} = await axios.post(`${process.env.REACT_APP_BASE_URL}/`);
+            console.log(data);
+            setCardData(data);
+        } catch (error){
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        getAllProducts();
+    }, []);
+
     return (
         <Layout>
             <div className='container-fluid row mt-3 home-page'>
@@ -49,20 +40,27 @@ const Home = () => {
                         {cardData.map((card) => (
                                 <Card
                                     company_name={card.company_name}
-                                    name={card.name}
-                                    time={card.time}
-                                    year={card.year}
-                                    type={card.type}
-                                    role={card.role}
-                                    votes={card.votes}
-                                    tags={card.tags}
+                                    name={card.post_username}
+                                    time={card.post_time}
+                                    year={card.company_year}
+                                    type={card.role_type}
+                                    role={card.company_role}
+                                    votes={69}
+                                    tags={tags}
                                 />
                         ))}
 
                     </div>
                 </div>
 
-                <div className='col-md-2' />
+                <div className='col-md-2' >
+                    <div id='fixedButton' onClick={() => navigate('/compose')}>
+                        <Fab color="primary" aria-label="add">
+                            <AddIcon />
+                        </Fab>
+                    </div>
+                </div>
+
             </div>
         </Layout>
     )

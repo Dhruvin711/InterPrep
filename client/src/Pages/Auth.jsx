@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import "../../CSS/auth.css"
+import { Link, useNavigate, useLocation } from 'react-router-dom'
+import "../CSS/auth.css"
+import axios  from "axios";
+import toast from "react-hot-toast";
 
-const Auth = () => {
-    const [rightPanelActive, setRightPanelActive] = useState(false);
+
+const Auth = (props) => {
+    const [rightPanelActive, setRightPanelActive] = useState(props.isRegister);
+
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
@@ -12,22 +18,73 @@ const Auth = () => {
 
     // handling overlays button clicks
     const handleClick = () => {
-        // console.log(rightPanelActive);
+        // signUp and signIn switch
         setRightPanelActive(!rightPanelActive);
+        
         setName("");
         setEmail("");
         setPassword("");
         setCpassword("");
     }
 
-    // // form submit handle funcs
-    // const handleLoginSubmit = (e) => {
-    //     return 1;
-    // }
+    // form submit handle funcs
+    const handleLoginSubmit = async (e) => {
+        e.preventDefault();
 
-    // const handleLoginSubmit = (e) => {
+        try {
+            const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/login/`, {
+                email,
+                password
+            });
 
-    // }
+            console.log(res);
+            if(res && res.data.success){
+                toast.success(res.data.message);
+
+
+
+                navigate(location.state || "/");
+            } else {
+                toast.error(res.data.message);
+            }
+
+        } catch (error) {
+            console.log(error);
+            toast.error("Something Went Wrong");
+        }
+    }
+
+    const handleRegisterSubmit = async (e) => {
+        e.preventDefault();
+
+        try {
+            if(cpassword === password){
+                const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/register/`, {
+                    first_name: name,
+                    email,
+                    password
+                });
+    
+                console.log(res);
+                if(res && res.data.success){
+                    console.log(res.data.message);
+    
+    
+    
+                    navigate(location.state || "/");
+                } else {
+                    console.log(res.data.message);
+                }
+            } else {
+                console.log("Confirm Password and password should Match");
+            }
+        
+
+        } catch (error) {
+            console.log(error);
+            toast.error("Something Went Wrong");
+        }
+    }
 
     return (
         <div className='auth'>
@@ -69,7 +126,7 @@ const Auth = () => {
                             onChange={(e) => setCpassword(e.target.value)} 
                             value={cpassword} 
                         />
-                        <button type='submit'>Sign Up</button>
+                        <button type='submit' onClick={handleRegisterSubmit}>Sign Up</button>
                     </form>
                 </div>
                 <div className="form-container sign-in-container">
@@ -96,7 +153,7 @@ const Auth = () => {
                             value={password} 
                         />
                         <Link to='/'>Forgot your password?</Link>
-                        <button type='submit'>Sign In</button>
+                        <button type='submit' onClick={handleLoginSubmit}>Sign In</button>
                     </form>
                 </div>
                 

@@ -19,12 +19,12 @@ const Card = ({ company_name, name, time, year, type, role, votes, tags }) => {
                             {votes}
                         </span>
                     </div>
-                    <h6>{name} - {time} ago</h6>
+                    <h6>{name} - {time}</h6>
                     <h4>{year} - {role}</h4>
                     <div className="tags_container">
                         {tags.map(tag => (
                             <div className="article_tag">
-                                <a>{tag}</a>
+                                <a href='/'>{tag}</a>
                             </div>
                         ))}
                     </div>
