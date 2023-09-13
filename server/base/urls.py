@@ -1,11 +1,11 @@
-from django.contrib import admin
-from django.urls import path, include
 from . import views
-from django.conf import settings
+from django.urls import path
+from .views import register_user, user_login, user_logout,createExperience
 
 urlpatterns = [
-    path('login/', views.loginPage, name='login'),
-    path('register/', views.registerPage, name='register'),
-    path('logout/', views.logoutUser, name='logout'),
+    path('register/', register_user, name='register'),
+    path('login/', user_login, name='login'),
+    path('logout/', user_logout, name='logout'),
+    path('createExperience/', createExperience, name='create-experience'),
     path('', views.homePage, name='home'),
 ]
