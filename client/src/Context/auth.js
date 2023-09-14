@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext, createContext } from "react";
 import axios from "axios";
-import "../CSS/navbar.css";
 
 const AuthContext = createContext();
 const AuthProvider = ({ children }) => {

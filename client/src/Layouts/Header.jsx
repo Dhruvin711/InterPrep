@@ -1,8 +1,10 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import "../CSS/header.css"
+import { useAuth } from '../Context/auth'
 
 const Header = () => {
+    // const [auth,setAuth] = useAuth();
     return (
         <>
             <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">

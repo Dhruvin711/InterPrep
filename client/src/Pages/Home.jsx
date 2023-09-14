@@ -16,7 +16,7 @@ const Home = () => {
     const getAllProducts = async () => {
         try{
             const {data} = await axios.post(`${process.env.REACT_APP_BASE_URL}/`);
-            console.log(data);
+            // console.log(data);
             setCardData(data);
         } catch (error){
             console.log(error);
@@ -39,6 +39,7 @@ const Home = () => {
                         <h1> Home </h1>
                         {cardData.map((card) => (
                                 <Card
+                                    key={card.id}
                                     company_name={card.company_name}
                                     name={card.post_username}
                                     time={card.post_time}

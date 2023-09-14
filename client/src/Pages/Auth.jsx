@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from 'react-router-dom'
 import "../CSS/auth.css"
 import axios  from "axios";
 import toast from "react-hot-toast";
-
+import { useAuth } from '../Context/auth';
 
 const Auth = (props) => {
     const [rightPanelActive, setRightPanelActive] = useState(props.isRegister);
@@ -16,6 +16,8 @@ const Auth = (props) => {
     const [password,setPassword] = useState("");
     const [cpassword,setCpassword] = useState("");
 
+    // const [auth,setAuth] = useAuth();
+
     // handling overlays button clicks
     const handleClick = () => {
         // signUp and signIn switch
@@ -27,27 +29,29 @@ const Auth = (props) => {
         setCpassword("");
     }
 
-    // form submit handle funcs
+    // Login submit handle funcs
     const handleLoginSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/login/`, {
                 email,
                 password
             });
-
-            console.log(res);
+            // console.log(res);
             if(res && res.data.success){
                 toast.success(res.data.message);
 
-
+                // setAuth({
+                //     ...auth,
+                //     user: res.data.user,
+                //     // token: res.data.token,
+                // });
+                // console.log(auth);
 
                 navigate(location.state || "/");
             } else {
                 toast.error(res.data.message);
             }
-
         } catch (error) {
             console.log(error);
             toast.error("Something Went Wrong");
@@ -64,22 +68,23 @@ const Auth = (props) => {
                     email,
                     password
                 });
-    
-                console.log(res);
+                // console.log(res);
                 if(res && res.data.success){
-                    console.log(res.data.message);
-    
-    
+                    toast.success(res.data.message);
+
+                    // setAuth({
+                    //     ...auth,
+                    //     user: res.data.user,
+                    //     // token: res.data.token,
+                    // });
     
                     navigate(location.state || "/");
                 } else {
-                    console.log(res.data.message);
+                    toast.error(res.data.message);
                 }
             } else {
-                console.log("Confirm Password and password should Match");
-            }
-        
-
+                toast.error("Confirm Password and password should Match");
+            }    
         } catch (error) {
             console.log(error);
             toast.error("Something Went Wrong");
