@@ -87,11 +87,24 @@ WSGI_APPLICATION = 'server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+#for mongoDB
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+       'default': {
+           'ENGINE': 'djongo',
+           'NAME': 'InterPrep',
+           "CLIENT" : {
+            'host' : 'mongodb+srv://GoFood:mernapp123@cluster0.cmoxix9.mongodb.net/Test1',
+            'username':'GoFood',
+            'password':'mernapp123',
+           }
+       }
 }
 
 # AUTH_USER_MODEL = 'base.AppUser'
