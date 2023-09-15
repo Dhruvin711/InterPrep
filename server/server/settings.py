@@ -100,7 +100,7 @@ DATABASES = {
            'ENGINE': 'djongo',
            'NAME': 'InterPrep',
            "CLIENT" : {
-            'host' : 'mongo://GoFood:mernapp123@cluster0.cmoxix9.mongodb.net/Test1',
+            'host' : 'mongodb://GoFood:mernapp123@cluster0.cmoxix9.mongodb.net/Test1',
             'username':'GoFood',
             'password':'mernapp123',
            }
