@@ -5,3 +5,4 @@ gunicorn
 djangorestframework
 django-cors-headers
 Djongo
+pymongo==3.12.1
