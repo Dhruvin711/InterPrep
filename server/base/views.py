@@ -82,7 +82,7 @@ def user_logout(request):
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 # Route for getting all Experiences 
-@api_view(['POST'])
+@api_view(['GET'])
 def homePage(request):
     department_query = request.data.get('department') if request.data.get('department') else ''
     company_query = request.data.get('company_name') if request.data.get('company_name') else ''
@@ -90,13 +90,7 @@ def homePage(request):
     company_role_query = request.data.get('company_role') if request.data.get('company_role') else ''
     post_username_query = request.data.get('post_username') if request.data.get('post_username') else ''
 
-    experience = Experience.objects.filter(
-        Q(company_name__icontains = company_query) &
-        Q(company_year__icontains = company_year_query) &
-        Q(company_role__icontains = company_role_query) &
-        Q(post_username__icontains = post_username_query)
-    )
-
+    experience = Experience.objects.all()
     serializer = ExperienceSerializer(experience, many=True)
     return Response(serializer.data)
 
@@ -104,9 +98,6 @@ def homePage(request):
 @api_view(['POST'])
 def createExperience(request):
     data = request.data
-
-    return Response({'user':request.user})
-
     experience = Experience.objects.create(
             company_name = data['company_name'],
             company_year = data['company_year'],
@@ -116,7 +107,5 @@ def createExperience(request):
             post_time = data['post_time'],
             tips = data['tips']
         )
-
-
     serializer = ExperienceSerializer(experience,many=False)
     return Response({'Success'})
