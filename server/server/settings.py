@@ -99,11 +99,9 @@ DATABASES = {
        'default': {
            'ENGINE': 'djongo',
            'NAME': 'InterPrep',
-           "CLIENT" : {
-            'host' : 'mongodb://GoFood:mernapp123@cluster0.cmoxix9.mongodb.net/Test1',
+            'host' : 'mongodb+srv://GoFood:mernapp123@cluster0.cmoxix9.mongodb.net/Test1',
             'username':'GoFood',
             'password':'mernapp123',
-           }
        }
 }
 
