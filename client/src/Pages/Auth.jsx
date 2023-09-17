@@ -68,7 +68,7 @@ const Auth = (props) => {
                     email,
                     password
                 });
-                // console.log(res);
+                console.log(res);
                 if(res && res.data.success){
                     toast.success(res.data.message);
 

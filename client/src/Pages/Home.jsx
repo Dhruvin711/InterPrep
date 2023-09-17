@@ -6,6 +6,7 @@ import AddIcon from '@mui/icons-material/Add';
 import "../CSS/home.css";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Filters from '../Components/Filters';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Home = () => {
 
     const getAllProducts = async () => {
         try{
-            const {data} = await axios.post(`${process.env.REACT_APP_BASE_URL}/`);
+            const {data} = await axios.get(`${process.env.REACT_APP_BASE_URL}/`);
             // console.log(data);
             setCardData(data);
         } catch (error){
@@ -29,9 +30,9 @@ const Home = () => {
 
     return (
         <Layout>
-            <div className='container-fluid row mt-3 home-page'>
+            <div className='container-fluid row pt-3 home-page'>
                 <div className='col-md-3 filters'>
-
+                    <Filters />
                 </div>
                 <div className='col-md-7'>
 
