@@ -1,0 +1,394 @@
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,600,700);
+
+body {
+    padding: 40px 0 0 0;
+    font-family: 'Titillium Web', sans-serif;
+    /* padding: 20px 20px; */
+}
+
+aside,
+section {
+    width: 275px;
+    /* background: #efefef; */
+    color: rgb(177, 177, 177);
+    border-right: 1px solid rgba(51, 51, 51, 0.3);
+    padding-right: 30px;
+    
+    padding-left: 20px;
+}
+
+#topBar {
+    height: 55px;
+    border-bottom: 1px solid rgba(51, 51, 51, 0.3);
+}
+
+#topBar input {
+    width: 430px;
+    float: left;
+    clear: none;
+}
+
+#topBar select {
+    max-width: 200px;
+    float: right;
+}
+
+#topBar .player-search {
+    background: #fff url("//d1g3fc5n8s9pjg.cloudfront.net/img/icons/util/search.svg") no-repeat;
+    background-size: 14px 14px;
+    background-position: 10px center;
+    padding-left: 35px;
+    width: 500px;
+}
+
+.sortBy {
+    float: right;
+    width: 275px;
+}
+
+.sortBy h4 {
+    float: left;
+    margin-top: 7px;
+}
+
+#specials,
+#priceRange,
+#sports,
+#type {
+    margin: 10px 0;
+    position: relative;
+    clear: both;
+}
+
+.value {
+    display: none !important;
+}
+
+.bigHead {
+    font-size: 1.8em;
+    color: rgb(50, 50, 50);
+    margin-top: 0;
+    padding-top: 15px;
+}
+
+#filters h1 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+#filters h2 {
+    margin: 0;
+    font-size: 1.3em;
+}
+
+#filters h3 {
+    font-size: 1.3em;
+    margin-top: -5px;
+}
+
+#filters h4 {
+    color: #b1b1b1;
+    font-size: 1.1em;
+}
+
+.results {
+    color: #f4c015;
+    font-weight: 600;
+    font-size: 1.8em;
+}
+
+#sports h4,
+#type h4 {
+    font-size: 1.1em;
+    display: inline-block;
+    margin: 5px 10px;
+    clear: none;
+}
+
+#sports .check-box,
+#type .check-box {
+    float: left;
+}
+
+.box1 {
+    min-width: 120px;
+    margin: 10px 0;
+    clear: none;
+    color: #b1b1b1;
+}
+
+.box1-clicked h4 {
+    color: gray !important;
+}
+
+#sports .box1 {
+    float: left;
+    margin: 4px 0;
+}
+
+.box2 {
+    float: left;
+    text-align: center;
+    /* margin-right: 17px; */
+    width: 70px;
+}
+
+.clearMarg {
+    margin: 15px 0;
+}
+
+#slider {}
+
+.prices {
+    margin: 0 auto;
+}
+
+.prices img {
+    width: 25px;
+    margin-right: 5px;
+}
+
+.minVal,
+.maxVal {
+    margin-top: 20px;
+    background: url("//d1g3fc5n8s9pjg.cloudfront.net/img/icons/user/ticket-gold.svg") no-repeat;
+    background-size: 25px;
+    padding: 5px 0 5px 25px;
+}
+
+.minVal img,
+.maxVal img {
+    width: 35px;
+}
+
+.minVal h3,
+.maxVal h3 {
+    float: right;
+    clear: none;
+    padding-left: 2px;
+}
+
+.minVal {
+    float: left;
+    clear: none;
+}
+
+.maxVal {
+    float: right;
+    clear: none;
+}
+
+.bump {
+    margin-left: 25px;
+    position: relative
+}
+
+.specBump {
+    margin-left: 5px;
+}
+
+.ui-widget-header {
+    background: #f4c015;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+    background: #656565;
+}
+
+.ui-widget-content {
+    background: #ddd;
+}
+
+.ui-slider-handle:focus {
+    outline: none;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+    top: -.5em;
+    margin-left: -.6em;
+    height: 1.8em;
+    width: 1.3em
+}
+
+/*CHECK BOXES*/
+/* Checkmark style starts */
+
+@-moz-keyframes dothabottomcheck {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 15px;
+    }
+}
+
+@-webkit-keyframes dothabottomcheck {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 15px;
+    }
+}
+
+@keyframes dothabottomcheck {
+    0% {
+        height: 0;
+    }
+
+    100% {
+        height: 15px;
+    }
+}
+
+@keyframes dothatopcheck {
+    0% {
+        height: 0;
+    }
+
+    50% {
+        height: 0;
+    }
+
+    100% {
+        height: 30px;
+    }
+}
+
+@-webkit-keyframes dothatopcheck {
+    0% {
+        height: 0;
+    }
+
+    50% {
+        height: 0;
+    }
+
+    100% {
+        height: 30px;
+    }
+}
+
+@-moz-keyframes dothatopcheck {
+    0% {
+        height: 0;
+    }
+
+    50% {
+        height: 0;
+    }
+
+    100% {
+        height: 30px;
+    }
+}
+
+input[type=checkbox] {
+    display: none;
+}
+
+.check-box {
+    height: 30px;
+    width: 30px;
+    background-color: transparent;
+    border: 2px solid #838383;
+    border-radius: 5px;
+    position: relative;
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -moz-transition: border-color ease 0.2s;
+    -o-transition: border-color ease 0.2s;
+    -webkit-transition: border-color ease 0.2s;
+    transition: border-color ease 0.2s;
+    cursor: pointer;
+}
+
+.check-box:last-child,
+#specials ul li:last-child {
+    /*margin-right: 0;*/
+}
+
+.check-box::before,
+.check-box::after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    height: 0;
+    width: 5px;
+    background-color: #f4c015;
+    display: inline-block;
+    -moz-transform-origin: left top;
+    -ms-transform-origin: left top;
+    -o-transform-origin: left top;
+    -webkit-transform-origin: left top;
+    transform-origin: left top;
+    border-radius: 2px;
+    content: ' ';
+    -webkit-transition: opacity ease .5;
+    -moz-transition: opacity ease .5;
+    transition: opacity ease .5;
+}
+
+.check-box::before {
+    top: 20px;
+    left: 15px;
+    box-shadow: 0 0 0 3px #efefef;
+    -moz-transform: rotate(-135deg);
+    -ms-transform: rotate(-135deg);
+    -o-transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+}
+
+.check-box::after {
+    top: 10px;
+    left: 4px;
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+input[type=checkbox]:checked+.check-box,
+.check-box.checked {
+    border-color: #f4c015;
+}
+
+input[type=checkbox]:checked+.check-box::after,
+.check-box.checked::after {
+    height: 10px;
+    -moz-animation: dothabottomcheck 0.2s ease 0s forwards;
+    -o-animation: dothabottomcheck 0.2s ease 0s forwards;
+    -webkit-animation: dothabottomcheck 0.2s ease 0s forwards;
+    animation: dothabottomcheck 0.2s ease 0s forwards;
+}
+
+input[type=checkbox]:checked+.check-box::before,
+.check-box.checked::before {
+    height: 60px;
+    -moz-animation: dothatopcheck 0.4s ease 0s forwards;
+    -o-animation: dothatopcheck 0.4s ease 0s forwards;
+    -webkit-animation: dothatopcheck 0.4s ease 0s forwards;
+    animation: dothatopcheck 0.4s ease 0s forwards;
+}
+
+.grey {
+    color: rgb(51, 51, 51) !important;
+}
+
+.fixed {
+    position: fixed;
+    top: 0;
+    height: 55px;
+    z-index: 1;
+    width: 100%;
+}
