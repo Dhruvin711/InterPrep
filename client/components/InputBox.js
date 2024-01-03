@@ -9,48 +9,41 @@ const InputBox = ({ name, type }) => {
   const [value, setValue] = useState("");
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [currType, setCurrType] = useState(type);
-  let inputRef = useRef();
+  const inputRef = useRef();
 
   const inputIcon = () => {
     switch (type) {
       case 'text':
-        return <PersonIcon key={type}/>
+        return <PersonIcon />;
       case 'email':
-        return <AlternateEmailIcon key={type} />
+        return <AlternateEmailIcon />;
       case 'password':
-        return passwordVisible === false ? <VisibilityOffIcon key={passwordVisible} /> : <VisibilityIcon key={passwordVisible} />
+        return passwordVisible ? <VisibilityIcon /> : <VisibilityOffIcon />;
       default:
-        return <></>
+        return null;
     }
   }
 
   const handleToggle = () => {
-    if(type === 'password'){
-      if(currType === type){
-        setCurrType('text');
-      } else {
-        setCurrType('password');
-      }
-      setPasswordVisible(!passwordVisible);
+    if (type === 'password') {
+      setCurrType((prevType) => (prevType === 'password' ? 'text' : 'password'));
+      setPasswordVisible((prevVisible) => !prevVisible);
     }
   }
-  
 
   const handleChange = (event) => {
     setValue(event.target.value);
-    // console.log(value);
   }
 
   useEffect(() => {
-    const turnOffIsActive = e => {
+    const turnOffIsActive = (e) => {
       if (!inputRef.current.contains(e.target)) {
         setIsActive(false);
       }
-      // console.log(e);
-    }
-    document.addEventListener('click', turnOffIsActive)
+    };
+    document.addEventListener('click', turnOffIsActive);
 
-    return () => document.body.removeEventListener('click', turnOffIsActive)
+    return () => document.removeEventListener('click', turnOffIsActive);
   }, []);
 
   return (
@@ -58,7 +51,6 @@ const InputBox = ({ name, type }) => {
       ref={inputRef}
     >
       <div className='mx-2 my-1 flex justify-between items-center'>
-
         <div className='py-0.5 px-2'>
           <p className={`text-xs font-semibold ${isActive ? 'text-sky-400' : 'opacity-50'}`}>{name}</p>
           <input className={`bg-gray-700 !outline-none text-lg ${type === 'text' ? 'w-[10rem]' : 'w-[25rem]'} `}
@@ -68,14 +60,12 @@ const InputBox = ({ name, type }) => {
             type={currType}
           />
         </div>
-
-        <div className={`px-2 ${type==='password' ? 'cursor-pointer' : null} `} onMouseDown={handleToggle}>
+        <div className={`px-2 ${type === 'password' ? 'cursor-pointer' : ''}`} onMouseDown={handleToggle}>
           {inputIcon()}
         </div>
-
       </div>
     </div>
-  )
+  );
 }
 
-export default InputBox
+export default InputBox;
